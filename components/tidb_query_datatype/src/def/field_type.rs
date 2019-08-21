@@ -195,6 +195,7 @@ pub trait FieldTypeAccessor {
     }
 
     /// Whether the flag contains `FieldTypeFlag::UNSIGNED`
+    #[inline]
     fn is_unsigned(&self) -> bool {
         self.flag().contains(FieldTypeFlag::UNSIGNED)
     }
@@ -282,12 +283,12 @@ impl FieldTypeAccessor for ColumnInfo {
 
     #[inline]
     fn flen(&self) -> isize {
-        self.get_columnLen() as isize
+        self.get_column_len() as isize
     }
 
     #[inline]
     fn set_flen(&mut self, flen: isize) -> &mut dyn FieldTypeAccessor {
-        ColumnInfo::set_columnLen(self, flen as i32);
+        ColumnInfo::set_column_len(self, flen as i32);
         self as &mut dyn FieldTypeAccessor
     }
 
